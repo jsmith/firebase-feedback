@@ -1,41 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { useAuth } from './auth';
+import { Button } from './Button';
+import firebase from 'firebase/app';
+import { Feedback } from './Feedback';
+import { SignInForm } from './SignInForm';
 
-interface AppProps {}
+export default function App() {
+  const { user } = useAuth();
 
-function App({}: AppProps) {
-  // Create the count state.
-  const [count, setCount] = useState(0);
-  // Create the counter (+1 every second).
-  useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000);
-    return () => clearTimeout(timer);
-  }, [count, setCount]);
-  // Return the App component.
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <p>
-          Page has been open for <code>{count}</code> seconds.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+    <div className="h-screen max-w-xl mx-auto flex flex-col justify-center py-12 px-5 text-gray-900">
+      <h1 className="text-3xl font-extrabold text-center">Feedback Tool</h1>
+      <p className="text-center">
+        See the accompanying{' '}
+        <a
+          href="https://jacobsmith.me/blog/firebase-feedback-tool"
+          target="_blank"
+          rel="noreferrer"
+          className="text-indigo-600 hover:underline focus:underline"
+        >
+          blog post
+        </a>{' '}
+        for more information. The sign in form has been pre-filled with
+        credentials that can be used for testing.
+      </p>
+
+      {user ? (
+        <>
+          <Button
+            onClick={() => firebase.auth().signOut()}
+            className="absolute right-0 top-0 m-5"
+            label="Sign Out"
+          />
+          <Feedback user={user} />
+        </>
+      ) : (
+        <SignInForm />
+      )}
     </div>
   );
 }
-
-export default App;
