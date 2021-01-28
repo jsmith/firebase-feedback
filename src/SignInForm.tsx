@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Button } from "./Button";
-import firebase from "firebase/app";
+import React, { useState } from 'react';
+import { Button } from './Button';
+import firebase from 'firebase/app';
 
 export const SignInForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('test@test.com');
+  const [password, setPassword] = useState('test@test.com');
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   return (
@@ -73,15 +73,15 @@ export const SignInForm = () => {
                 .signInWithEmailAndPassword(email, password);
             } catch (e) {
               switch (e.code) {
-                case "auth/invalid-email":
-                case "auth/user-not-found":
-                case "auth/wrong-password":
-                  setError("Invalid credentials. Please try again!");
-                case "auth/network-request-failed":
-                  setError("Network error. Please try again!");
+                case 'auth/invalid-email':
+                case 'auth/user-not-found':
+                case 'auth/wrong-password':
+                  setError('Invalid credentials. Please try again!');
+                case 'auth/network-request-failed':
+                  setError('Network error. Please try again!');
                 default:
                   console.error(e);
-                  setError("Something went wrong. Please try again!");
+                  setError('Something went wrong. Please try again!');
               }
             } finally {
               setLoading(false);

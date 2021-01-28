@@ -1,9 +1,10 @@
 {
   "functions": {
+    "runtime": "nodejs10",
     "source": "functions"
   },
   "hosting": {
-    "public": "app/build",
+    "public": "build",
     "rewrites": [
       {
         "source": "**",
