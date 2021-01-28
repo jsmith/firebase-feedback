@@ -1,5 +1,5 @@
-import classNames from "classnames";
-import React from "react";
+import classNames from 'classnames';
+import React from 'react';
 
 export const RadioIconButton = ({
   icon: Icon,
@@ -31,8 +31,8 @@ export const RadioIconButton = ({
       <label
         htmlFor={id}
         className={classNames(
-          "transform duration-150 hover:scale-110 flex flex-col items-center",
-          checked ? "scale-110" : !disableOpacity && "opacity-50"
+          'transform duration-150 hover:scale-110 flex flex-col items-center',
+          checked ? 'scale-110' : !disableOpacity && 'opacity-50',
         )}
       >
         <Icon className="h-20 w-20" />

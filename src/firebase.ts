@@ -1,8 +1,8 @@
 // src/firebase.ts
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/storage";
-import "firebase/firestore";
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/storage';
+import 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: import.meta.env.SNOWPACK_PUBLIC_API_KEY,

@@ -1,5 +1,5 @@
-import * as React from "react";
-import classNames from "classnames";
+import * as React from 'react';
+import classNames from 'classnames';
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -19,11 +19,11 @@ export const Button = ({
     <button
       {...props}
       className={classNames(
-        "flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium ",
+        'flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium ',
         disabled
-          ? "border-gray-100 bg-gray-200 text-gray-500 cursor-not-allowed"
-          : "text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
-        className
+          ? 'border-gray-100 bg-gray-200 text-gray-500 cursor-not-allowed'
+          : 'text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
+        className,
       )}
       // Always disabled while loading
       disabled={disabled || loading}

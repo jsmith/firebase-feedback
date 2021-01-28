@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export function MoreVerticalIcon(props: { className?: string }) {
   return (

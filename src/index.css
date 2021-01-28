@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-input[type="radio"]:focus + label {
+input[type='radio']:focus + label {
   @apply ring-2 ring-offset-2 ring-indigo-500 rounded-sm;
 }

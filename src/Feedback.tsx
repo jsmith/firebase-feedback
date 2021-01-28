@@ -1,24 +1,24 @@
 // src/FeedbackTool.tsx
-import React, { useRef, useState } from "react";
-import { IssueIcon } from "./IssueIcon";
-import { IdeaIcon } from "./IdeaIcon";
-import { MoreVerticalIcon } from "./MoreVerticalIcon";
-import { Button } from "./Button";
-import firebase from "firebase/app";
-import * as uuid from "uuid";
-import { DragDiv } from "./DragDiv";
-import { AirplaneIcon } from "./AirplaneIcon";
-import { RadioIconButton } from "./RadioIconButton";
+import React, { useRef, useState } from 'react';
+import { IssueIcon } from './IssueIcon';
+import { IdeaIcon } from './IdeaIcon';
+import { MoreVerticalIcon } from './MoreVerticalIcon';
+import { Button } from './Button';
+import firebase from 'firebase/app';
+import * as uuid from 'uuid';
+import { DragDiv } from './DragDiv';
+import { AirplaneIcon } from './AirplaneIcon';
+import { RadioIconButton } from './RadioIconButton';
 
 // Given a # of bytes, format that into a nice human readable string
 // We'll use this to show the user the size of their attachments
 // Taken from https://stackoverflow.com/a/28120564/13928257
 export const bytesToHumanReadable = (bytes: number) => {
   if (bytes == 0) {
-    return "0B";
+    return '0B';
   }
   const e = Math.floor(Math.log(bytes) / Math.log(1024));
-  return (bytes / Math.pow(1024, e)).toFixed(2) + "" + " KMGTP".charAt(e) + "B";
+  return (bytes / Math.pow(1024, e)).toFixed(2) + '' + ' KMGTP'.charAt(e) + 'B';
 };
 
 export const Feedback = ({ user }: { user: firebase.User }) => {
@@ -31,10 +31,10 @@ export const Feedback = ({ user }: { user: firebase.User }) => {
   // their uploads
   // The "error" variable will be used to show error messages to users
   // "loading" will be set to true while the feedback is being submitted to show a loading icon
-  const [type, setType] = useState<"idea" | "issue" | "other">();
-  const [feedback, setFeedback] = useState("");
+  const [type, setType] = useState<'idea' | 'issue' | 'other'>();
+  const [feedback, setFeedback] = useState('');
   const [files, setFiles] = useState<Array<{ file: File; url: string }>>([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   // This will be used to toggle the file upload on click
@@ -67,12 +67,12 @@ export const Feedback = ({ user }: { user: firebase.User }) => {
     // We don't tell users about this since it's unlikely they will try to upload this # of items
     // Remove this if you don't want to limit the # of attachments
     if (files.length > 50) {
-      setError("You can only upload a maximum of 50 items");
+      setError('You can only upload a maximum of 50 items');
       return;
     }
 
     setLoading(true);
-    setError("");
+    setError('');
     try {
       // This size limit is enforced using security rules
       // But it's a much better to check first so we can immediately notify the user
@@ -88,7 +88,7 @@ export const Feedback = ({ user }: { user: firebase.User }) => {
         // insufficient
         // To fix this, a UUID is prepended to ensure uniqueness
         const ref = storage.ref(
-          `${user.uid}/feedback/${id}/${uuid.v4()}_${file.name}`
+          `${user.uid}/feedback/${id}/${uuid.v4()}_${file.name}`,
         );
 
         await ref.put(file);
@@ -100,14 +100,14 @@ export const Feedback = ({ user }: { user: firebase.User }) => {
         type,
       });
     } catch (e) {
-      setError("An unknown error occurred while submitting feedback.");
+      setError('An unknown error occurred while submitting feedback.');
       throw e;
     } finally {
       setLoading(false);
     }
 
     setFiles([]);
-    setFeedback("");
+    setFeedback('');
     setType(undefined);
     setSuccess(true);
   };
@@ -128,7 +128,7 @@ export const Feedback = ({ user }: { user: firebase.User }) => {
             </p>
           </div>
           <p className="text-center">
-            Want to{" "}
+            Want to{' '}
             <button
               className="cursor-pointer hover:underline focus:underline focus:outline-none text-blue-500"
               // Setting "success" to false will show the form again
@@ -153,8 +153,8 @@ export const Feedback = ({ user }: { user: firebase.User }) => {
               <RadioIconButton
                 id="feedback-issue"
                 name="feedback-type"
-                checked={type === "issue"}
-                setChecked={() => setType("issue")}
+                checked={type === 'issue'}
+                setChecked={() => setType('issue')}
                 icon={IssueIcon}
                 label="Issue"
                 disableOpacity={type === undefined}
@@ -162,8 +162,8 @@ export const Feedback = ({ user }: { user: firebase.User }) => {
               <RadioIconButton
                 id="feedback-idea"
                 name="feedback-type"
-                checked={type === "idea"}
-                setChecked={() => setType("idea")}
+                checked={type === 'idea'}
+                setChecked={() => setType('idea')}
                 icon={IdeaIcon}
                 label="Idea"
                 disableOpacity={type === undefined}
@@ -171,8 +171,8 @@ export const Feedback = ({ user }: { user: firebase.User }) => {
               <RadioIconButton
                 id="feedback-other"
                 name="feedback-type"
-                checked={type === "other"}
-                setChecked={() => setType("other")}
+                checked={type === 'other'}
+                setChecked={() => setType('other')}
                 icon={MoreVerticalIcon}
                 label="Other"
                 disableOpacity={type === undefined}
@@ -229,7 +229,7 @@ export const Feedback = ({ user }: { user: firebase.User }) => {
                         }}
                       >
                         Click here
-                      </button>{" "}
+                      </button>{' '}
                       or drag files to upload!
                     </div>
                   </DragDiv>
