@@ -14,7 +14,7 @@ export default function App() {
       <p className="text-center">
         See the accompanying{' '}
         <a
-          href="https://jacobsmith.me/blog/firebase-feedback-tool"
+          href="https://jacobsmith.me/blog/firebase-react-feedback-tool"
           target="_blank"
           rel="noreferrer"
           className="text-indigo-600 hover:underline focus:underline"

@@ -3,6 +3,8 @@ import sgMail from '@sendgrid/mail';
 import admin from 'firebase-admin';
 import path from 'path';
 
+admin.initializeApp();
+
 const config = functions.config();
 const sengridApiKey = config.env.sendgrid_api_key;
 const notificationEmail = config.env.notification_email;
